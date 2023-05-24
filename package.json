@@ -1,7 +1,7 @@
 {
   "name": "electron-shell",
   "version": "1.0.0",
-  "description": "A minimal Electron application",
+  "description": "A minimal Electron application for displaying webApp",
   "main": "index.js",
   "scripts": {
     "start": "electron .",

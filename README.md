@@ -1,40 +1,39 @@
-# electron-quick-start
+# electron-client
 
-**Clone and run for a quick way to see Electron in action.**
+electron多tab页面桌面客户端，修改为基于configs目录下的pages.json读取首页地址与空白页地址
 
-This is a minimal Electron application based on the [Quick Start Guide](https://electronjs.org/docs/latest/tutorial/quick-start) within the Electron documentation.
+可运行的配置如下：
+1. node版本: 16.13.2   https://nodejs.org/dist/v16.13.2/  理论上可能需要更高版本
+2. electron版本: ^24.2.0
+3. electron-builder版本：~2.1.1
+4. electron-devtools-installer版本: ^23.6.0
+5. npm版本: 9.6.6（应该不影响，只是记录）
+6. 构建应用时，使用electron_mirror: http://npm.taobao.org/mirrors/electron/
+具体为在 c盘下user/.npmrc中加入：
+```
+strict-ssl=false
+registry=https://registry.npm.taobao.org/
+ELECTRON_MIRROR = http://npm.taobao.org/mirrors/electron/
+```
+7. 在build时记得开代理，是会从github上下载内容的  简易代理：https://github.com/dotnetcore/FastGithub
+如果自己有科学上网工具自行开启
 
-A basic Electron application needs just these files:
+8. 控制打包完的软件图标设置一张256*256的.ico文件替换./build/icon.ico文件，保持同名
+9. electron 24.2 对应chromium版本112， electron 25 对应chromium版本114，在5月30日electron将做一次版本更新
 
-- `package.json` - Points to the app's main file and lists its details and dependencies.
-- `main.js` - Starts the app and creates a browser window to render HTML. This is the app's **main process**.
-- `index.html` - A web page to render. This is the app's **renderer process**.
-- `preload.js` - A content script that runs before the renderer process loads.
+10. 当前注释了chorme-context-menu插件，代替的将是网页中自定义的context-menu
 
-You can learn more about each of these components in depth within the [Tutorial](https://electronjs.org/docs/latest/tutorial/tutorial-prerequisites).
-
-## To Use
-
-To clone and run this repository you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer. From your command line:
-
-```bash
-# Clone this repository
-git clone https://github.com/electron/electron-quick-start
-# Go into the repository
-cd electron-quick-start
-# Install dependencies
+### 安装依赖
+```
 npm install
-# Run the app
-npm start
 ```
 
-Note: If you're using Linux Bash for Windows, [see this guide](https://www.howtogeek.com/261575/how-to-run-graphical-linux-desktop-applications-from-windows-10s-bash-shell/) or use `node` from the command prompt.
+### 本地运行 
+```
+npm run start
+```
 
-## Resources for Learning Electron
-
-- [electronjs.org/docs](https://electronjs.org/docs) - all of Electron's documentation
-- [Electron Fiddle](https://electronjs.org/fiddle) - Electron Fiddle, an app to test small Electron experiments
-
-## License
-
-[CC0 1.0 (Public Domain)](LICENSE.md)
+### 打包
+```
+npm run build
+```

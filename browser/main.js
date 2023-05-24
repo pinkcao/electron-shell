@@ -324,27 +324,27 @@ class Browser {
       }
     })
 
-    webContents.on('context-menu', (event, params) => {
-      const menu = buildChromeContextMenu({
-        params,
-        webContents,
-        extensionMenuItems: this.extensions.getContextMenuItems(webContents, params),
-        openLink: (url, disposition) => {
-          const win = this.getFocusedWindow()
+    // webContents.on('context-menu', (event, params) => {
+    //   const menu = buildChromeContextMenu({
+    //     params,
+    //     webContents,
+    //     extensionMenuItems: this.extensions.getContextMenuItems(webContents, params),
+    //     openLink: (url, disposition) => {
+    //       const win = this.getFocusedWindow()
 
-          switch (disposition) {
-            case 'new-window':
-              this.createWindow({ initialUrl: url })
-              break
-            default:
-              const tab = win.tabs.create()
-              tab.loadURL(url)
-          }
-        }
-      })
+    //       switch (disposition) {
+    //         case 'new-window':
+    //           this.createWindow({ initialUrl: url })
+    //           break
+    //         default:
+    //           const tab = win.tabs.create()
+    //           tab.loadURL(url)
+    //       }
+    //     }
+    //   })
 
-      menu.popup()
-    })
+    //   menu.popup()
+    // })
   }
 }
 
