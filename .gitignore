@@ -1,1 +1,6 @@
 node_modules
+
+dist_electron
+electron-chrome-extensions
+
+.github

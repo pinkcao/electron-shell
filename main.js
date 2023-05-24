@@ -2,7 +2,7 @@
 const { app, BrowserWindow } = require('electron')
 const path = require('path')
 
-function createWindow () {
+function createWindow() {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     width: 800,
@@ -12,12 +12,17 @@ function createWindow () {
     }
   })
 
+  mainWindow.loadURL("https://172.16.6.246:8090/")
   // and load the index.html of the app.
-  mainWindow.loadFile('index.html')
+  // mainWindow.loadFile('index.html')
 
   // Open the DevTools.
-  // mainWindow.webContents.openDevTools()
+  mainWindow.webContents.openDevTools()
 }
+
+app.on('certificate-error', (event, webContents, url, error, certificate, callback) => {
+  callback(true)
+})
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.

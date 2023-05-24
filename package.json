@@ -1,12 +1,12 @@
 {
-  "name": "electron-quick-start",
+  "name": "electron-shell",
   "version": "1.0.0",
   "description": "A minimal Electron application",
-  "main": "main.js",
+  "main": "index.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "build": "electron-builder"
   },
-  "repository": "https://github.com/electron/electron-quick-start",
   "keywords": [
     "Electron",
     "quick",
@@ -17,6 +17,35 @@
   "author": "GitHub",
   "license": "CC0-1.0",
   "devDependencies": {
-    "electron": "^24.2.0"
+    "electron": "^24.2.0",
+    "electron-builder": "^23.6.0"
+  },
+  "dependencies": {
+    "electron-chrome-context-menu": "^1.0.1",
+    "electron-chrome-extensions": "^3.4.0"
+  },
+  "build": {
+    "productName": "vimp-pro",
+    "appId": "com.ittc.electron-shell",
+    "directories": {
+      "output": "dist_electron"
+    },
+    "nsis": {
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": "always",
+      "installerLanguages": "zh_CN",
+      "language": "2052",
+      "oneClick": false,
+      "perMachine": true,
+      "runAfterFinish": false
+    },
+    "asar": false,
+    "extraResources": [{ "from": "./configs/pages.json", "to": "../configs/pages.json" }],
+    "win": {
+      "target": "nsis",
+      "icon": "./build/icon.ico",
+      "requestedExecutionLevel": "asInvoker",
+      "verifyUpdateCodeSignature": false
+    }
   }
 }
