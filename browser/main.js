@@ -15,7 +15,6 @@ const PAGES_FILE_NAME = 'pages.json'
 
 function loadConfig() {
   const configPath = path.join(path.resolve('./'), CONFIG_FILE_PATH)
-  console.log(configPath)
   try {
     let result = fs.readFileSync(path.join(configPath, PAGES_FILE_NAME), { encoding: 'utf-8' })
     return JSON.parse(result)
@@ -26,7 +25,6 @@ function loadConfig() {
 }
 
 function loadConfigToGlobal(jsonObject) {
-  console.log(jsonObject)
   if (jsonObject && jsonObject.startPage) {
     return jsonObject.startPage
   }
@@ -75,7 +73,7 @@ async function loadExtensions(session, extensionsPath) {
   const results = []
 
   for (const extPath of extensionDirectories.filter(Boolean)) {
-    console.log(`Loading extension from ${extPath}`)
+    // console.log(`Loading extension from ${extPath}`)
     try {
       const extensionInfo = await session.loadExtension(extPath)
       results.push(extensionInfo)
@@ -113,7 +111,6 @@ class TabbedBrowserWindow {
     this.webContents = this.window.webContents
 
     const webuiUrl = path.join('chrome-extension://', webuiExtensionId, '/webui.html')
-    console.log(webuiUrl)
     this.webContents.loadURL(webuiUrl)
 
     this.tabs = new Tabs(this.window)
@@ -124,7 +121,7 @@ class TabbedBrowserWindow {
       const startPage = loadConfigToGlobal(loadConfig())
       const initPage = startPage ? startPage : 'blank.page'
       if (options.initialUrl) tab.webContents.loadURL(initPage)
-      console.log(options.initialUrl)
+      // console.log(options.initialUrl)
 
       // Track tab that may have been created outside of the extensions API.
       self.extensions.addTab(tab.webContents, tab.window)
@@ -160,6 +157,11 @@ class Browser {
       if (process.platform !== 'darwin') {
         this.destroy()
       }
+    })
+
+    process.on('uncaughtException', (err, origin) => {
+      console.log(err)
+      console.log(origin)
     })
 
     app.on('web-contents-created', this.onWebContentsCreated.bind(this))
@@ -296,7 +298,7 @@ class Browser {
   async onWebContentsCreated(event, webContents) {
     const type = webContents.getType()
     const url = webContents.getURL()
-    console.log(`'web-contents-created' event [type:${type}, url:${url}]`)
+    // console.log(`'web-contents-created' event [type:${type}, url:${url}]`)
 
     if (process.env.SHELL_DEBUG && webContents.getType() === 'backgroundPage') {
       webContents.openDevTools({ mode: 'detach', activate: true })

@@ -44,7 +44,7 @@ class Tab {
     const [contentWidth, contentHeight] = this.window.getContentSize()
     // console.log(this.window.getSize())
     // console.log(this.window.getContentSize())
-    console.log(contentWidth)
+    // console.log(contentWidth)
     // console.log(height)
     this.view.setBounds({ x: 0, y: toolbarHeight, width: contentWidth, height: height - toolbarHeight })
     this.view.setAutoResize({ width: true, height: true })

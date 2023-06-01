@@ -2,5 +2,6 @@ node_modules
 
 dist_electron
 electron-chrome-extensions
+package-lock.json
 
 .github
